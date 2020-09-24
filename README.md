@@ -1,6 +1,6 @@
 # Gustavo the Spaceman
 
-![Gustavo](/archive/Projects/FabLab/FBV001-GustavoTheSpaceman/gustavo.png)
+![Gustavo](https://github.com/FabLabValsamoggia/GustavoTheSpaceman/blob/master/gustavo.png)
 
 developed with ♥ by FabLab Valsamoggia
 
