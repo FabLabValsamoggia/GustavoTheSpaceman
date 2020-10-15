@@ -71,6 +71,11 @@ phts_t photoR2;
 phts_t photoR3;
 phts_t photoR4;
 
+btn_state_t btn1;
+btn_state_t btn2;
+btn_state_t btn3;
+btn_state_t btn4;
+
 DFRobotDFPlayerMini myDFPlayer;
 SoftwareSerial mySoftwareSerial(11, 10);
 unsigned int volume = 15;
@@ -137,6 +142,84 @@ uint8_t phts_check_state(void)
     return (2);
 
   return (0);
+}
+
+uint8_t btns_check_state(uint16_t debounce)
+{
+    /*-------------------------------------------------*/
+    /*                    TASTO 1                      */
+    /*-------------------------------------------------*/
+    /* leggo il valore del tasto */
+    btn1.val = digitalRead(BTN1);
+    /* controllo sia diverso dal valore letto prima */
+    if((btn1.val == LOW) && (btn1.old_val == HIGH))
+    {
+        /* debounce del tasto */
+        delay(debounce);
+        /* rilettura del tasto */
+        btn1.val = digitalRead(BTN1);
+        if(btn1.val == LOW)
+        {
+            return(1);
+        }
+    }
+    /*-------------------------------------------------*/
+    /*                    TASTO 2                      */
+    /*-------------------------------------------------*/
+    /* leggo il valore del tasto */
+    btn2.val = digitalRead(BTN2);
+    /* controllo sia diverso dal valore letto prima */
+    if((btn2.val == LOW) && (btn2.old_val == HIGH))
+    {
+        /*debounce del tasto */
+        delay(debounce);
+        /* rilettura del tasto */
+        btn2.val = digitalRead(BTN2);
+        if(btn2.val == LOW)
+        {
+            return(2);
+        }
+    }
+    /*-------------------------------------------------*/
+    /*                    TASTO 3                      */
+    /*-------------------------------------------------*/
+    /* leggo il valore del tasto */
+    btn3.val = digitalRead(BTN3);
+    /* controllo sia diverso dal valore letto prima */
+    if((btn3.val == LOW) && (btn3.old_val == HIGH))
+    {
+        /*debounce del tasto */
+        delay(debounce);
+        /* rilettura del tasto */
+        btn3.val = digitalRead(BTN3);
+        if(btn3.val == LOW)
+        {
+            return(3);
+        }
+    }
+    /*-------------------------------------------------*/
+    /*                    TASTO 4                      */
+    /*-------------------------------------------------*/
+    /* leggo il valore del tasto */
+    btn4.val = digitalRead(BTN4);
+    /* controllo sia diverso dal valore letto prima */
+    if((btn4.val == LOW) && (btn4.old_val == HIGH))
+    {
+        /*debounce del tasto */
+        delay(debounce);
+        /* rilettura del tasto */
+        btn4.val = digitalRead(BTN4);
+        if(btn4.val == LOW)
+        {
+            return(4);
+        }
+    }
+    /* setto il valore letto come vecchio valore */
+    btn1.old_val = btn1.val;
+    btn2.old_val = btn2.val;
+    btn3.old_val = btn3.val;
+    btn4.old_val = btn4.val;
+    return(0);
 }
 /*----------------------------------------------------------------------------*/
 /* SpegniLed                                                                  */
@@ -487,5 +570,3 @@ void rainbowCycle(uint8_t wait)
     delay(wait);
   }
 }
-
-
